@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+ <head>
+
+    <meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <title>Select Fiels</title>
+
+  </head>
+
+  <body>
+      <H1>Select the check boxes: </H1>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\NewOutputFile.xlsx' name='D:\ExcelFiles\InputFolder\NewOutputFile.xlsx' value='D:\ExcelFiles\InputFolder\NewOutputFile.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\NewOutputFile.xlsx'>D:\ExcelFiles\InputFolder\NewOutputFile.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\NewSheet.xlsx' name='D:\ExcelFiles\InputFolder\NewSheet.xlsx' value='D:\ExcelFiles\InputFolder\NewSheet.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\NewSheet.xlsx'>D:\ExcelFiles\InputFolder\NewSheet.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\OutDT.xlsx' name='D:\ExcelFiles\InputFolder\OutDT.xlsx' value='D:\ExcelFiles\InputFolder\OutDT.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\OutDT.xlsx'>D:\ExcelFiles\InputFolder\OutDT.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\OutputFile.xlsx' name='D:\ExcelFiles\InputFolder\OutputFile.xlsx' value='D:\ExcelFiles\InputFolder\OutputFile.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\OutputFile.xlsx'>D:\ExcelFiles\InputFolder\OutputFile.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\POCFile.xlsx' name='D:\ExcelFiles\InputFolder\POCFile.xlsx' value='D:\ExcelFiles\InputFolder\POCFile.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\POCFile.xlsx'>D:\ExcelFiles\InputFolder\POCFile.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\PracInput.xlsx' name='D:\ExcelFiles\InputFolder\PracInput.xlsx' value='D:\ExcelFiles\InputFolder\PracInput.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\PracInput.xlsx'>D:\ExcelFiles\InputFolder\PracInput.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\Rohan_PDFExtraction.xlsx' name='D:\ExcelFiles\InputFolder\Rohan_PDFExtraction.xlsx' value='D:\ExcelFiles\InputFolder\Rohan_PDFExtraction.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\Rohan_PDFExtraction.xlsx'>D:\ExcelFiles\InputFolder\Rohan_PDFExtraction.xlsx</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\Sales Records.csv' name='D:\ExcelFiles\InputFolder\Sales Records.csv' value='D:\ExcelFiles\InputFolder\Sales Records.csv'>
+		<label for='D:\ExcelFiles\InputFolder\Sales Records.csv'>D:\ExcelFiles\InputFolder\Sales Records.csv</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\SalesRecords_Template.csv' name='D:\ExcelFiles\InputFolder\SalesRecords_Template.csv' value='D:\ExcelFiles\InputFolder\SalesRecords_Template.csv'>
+		<label for='D:\ExcelFiles\InputFolder\SalesRecords_Template.csv'>D:\ExcelFiles\InputFolder\SalesRecords_Template.csv</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\SampleData5L.xls' name='D:\ExcelFiles\InputFolder\SampleData5L.xls' value='D:\ExcelFiles\InputFolder\SampleData5L.xls'>
+		<label for='D:\ExcelFiles\InputFolder\SampleData5L.xls'>D:\ExcelFiles\InputFolder\SampleData5L.xls</label><br>		<input type='checkbox' id='D:\ExcelFiles\InputFolder\SampleData5L.xlsx' name='D:\ExcelFiles\InputFolder\SampleData5L.xlsx' value='D:\ExcelFiles\InputFolder\SampleData5L.xlsx'>
+		<label for='D:\ExcelFiles\InputFolder\SampleData5L.xlsx'>D:\ExcelFiles\InputFolder\SampleData5L.xlsx</label><br><br>       </br><button onclick='SubmitValues()'>Submit</button>
+		<script type='text/javascript'>
+			function SubmitValues() {
+				var selectedLst = ''
+				var sel = document.getElementsByTagName('input')
+				for(i=0;i<sel.length;i++){ 
+					if(sel[i].checked){
+						selectedLst += sel[i].value + '|'
+					}
+				}
+				window.external.setResult(selectedLst);
+				return true;
+			}
+		</script>
+  </body>
+  </html>
