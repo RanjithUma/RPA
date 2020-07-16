@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1240,1514" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1240,1614" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
       <x:String>System.Activities</x:String>
@@ -49,7 +49,7 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="382,1349" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="382,1449" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="lstFiles" />
       <Variable x:TypeArguments="x:String" Name="selectedList" />
@@ -58,6 +58,11 @@
       <Variable x:TypeArguments="x:String" Name="TemplateString" />
       <Variable x:TypeArguments="x:String" Name="HTMLBody" />
       <Variable x:TypeArguments="x:String" Name="inputPath" />
+      <Variable x:TypeArguments="x:Int32" Name="intCounter">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Int32" Value="1" />
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -93,11 +98,35 @@
     &lt;meta charset='utf-8'&gt;
 		&lt;meta http-equiv='X-UA-Compatible' content='IE=edge' /&gt;
     &lt;title&gt;Select Fiels&lt;/title&gt;
+&lt;style&gt;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+button{
+	width: 100%;
+	height:50px;
+}
+
+&lt;/style&gt;
   &lt;/head&gt;
 
   &lt;body&gt;
-      &lt;H1&gt;Select the check boxes: &lt;/H1&gt;</InArgument>
+      &lt;H1&gt;Select Files: &lt;/H1&gt;	&lt;table&gt;	
+&lt;th style='text-align:center'&gt;S.No&lt;/th&gt;
+	  &lt;th style='text-align:center'&gt;Check Box&lt;/th&gt;
+	  &lt;th&gt;File Name&lt;/th&gt;</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="340,64" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -105,7 +134,8 @@
         <OutArgument x:TypeArguments="x:String">[HTMLFooter]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">&lt;br&gt;       &lt;/br&gt;&lt;button onclick='SubmitValues()'&gt;Submit&lt;/button&gt;
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">		&lt;tr&gt;&lt;td colspan='3'&gt;&lt;button onclick='SubmitValues()'&gt;Continue&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+		&lt;/table&gt;
 		&lt;script type='text/javascript'&gt;
 			function SubmitValues() {
 				var selectedLst = ''
@@ -116,7 +146,7 @@
 					}
 				}
 				window.external.setResult(selectedLst);
-				return true;
+				return True;
 			}
 		&lt;/script&gt;
   &lt;/body&gt;
@@ -128,17 +158,20 @@
         <OutArgument x:TypeArguments="x:String">[TemplateString]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">		&lt;input type='checkbox' id='#filePaht' name='#filePaht' value='#filePaht'&gt;
-		&lt;label for='#filePaht'&gt;#filePaht&lt;/label&gt;&lt;br&gt;</InArgument>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">		&lt;tr&gt;
+		&lt;td style='text-align:center;'&gt;#sno&lt;/td&gt;
+		&lt;td style='text-align:center;'&gt;&lt;input type='checkbox' id='#fileName' name='#fileName' value='#filePath'&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;label For='#filePath'&gt;#fileName&lt;/label&gt;		&lt;/td&gt;
+		&lt;/tr&gt;</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="340,286" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[lstFiles]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="340,386" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[lstFiles]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="file" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -149,7 +182,15 @@
                 <OutArgument x:TypeArguments="x:String">[HTMLBody]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[HTMLBody+TemplateString.Replace("#filePaht",file)]</InArgument>
+                <InArgument x:TypeArguments="x:String">[HTMLBody+TemplateString.Replace("#filePath",file).Replace("#fileName",Path.GetFileName(file)).Replace("#sno",intCounter.ToString)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[intCounter]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[intCounter+1]</InArgument>
               </Assign.Value>
             </Assign>
           </Sequence>
